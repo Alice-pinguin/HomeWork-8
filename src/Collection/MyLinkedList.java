@@ -4,12 +4,12 @@ import java.util.Iterator;
 
 public class MyLinkedList<T> implements MyList <T> {
 
-    private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> previous;
+    private static class Node<T> {
+        T item;
+        Node<T> next;
+        Node<T> previous;
 
-        public Node(E item) {
+        public Node(T item) {
             this.item = null;
             this.next = null;
             this.previous = null;
