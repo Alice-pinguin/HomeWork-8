@@ -12,7 +12,6 @@ public class MyHashMap <K,V> implements IHashMap {
         private Node next;
 
         public Node(Object value, Object key) {
-
             this.key = key;
             this.value = value;
             next = null;
@@ -20,7 +19,7 @@ public class MyHashMap <K,V> implements IHashMap {
                 hash = key.hashCode();
         }
 
-        public Object getData() {
+        public Object getValue {
             return value;
         }
 
