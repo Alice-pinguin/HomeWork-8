@@ -1,7 +1,5 @@
 package Collection;
 
-import java.util.Iterator;
-
 public class MyLinkedList<T> implements MyList <T> {
 
     private static class Node<T> {
@@ -76,33 +74,7 @@ public class MyLinkedList<T> implements MyList <T> {
         }
         return result;
     }
-    public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            private Node<T> node = first;
-            @Override
-            public boolean hasNext() {
-                return node!=null;
-            }
-            @Override
-            public T next() {
-                T item = node.item;
-                node = node.next;
-                return item;
-            }
-        };
-    }
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator<T> iterator = this.iterator();
-        while(iterator.hasNext()){
-            sb.append(iterator.next());
-            if (iterator.hasNext()) sb.append(", ");
-        }
-        sb.append("]");
-        return sb.toString();
-
-    }
+ 
 }
 
 
