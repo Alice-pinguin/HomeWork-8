@@ -12,42 +12,34 @@ public class MyHashMap <K,V> implements IHashMap {
         private Node next;
 
         public Node(Object value, Object key) {
+
             this.key = key;
             this.value = value;
             next = null;
             if (key != null)
                 hash = key.hashCode();
         }
-
-        public Object getValue {
+        public Object getValue() {
             return value;
         }
-
         public Node getNext() {
             return next;
         }
-
         public Object getKey() {
             return key;
         }
-
         public void setNext(Node next) {
             this.next = next;
         }
-
         public void clearNext() {
             next = null;
         }
-
-        public void setData(Object value) {
+        public void setValue (Object value) {
             this.value = value;
         }
-
     }
-
-    private static int capacity = 15;
+    private static int capacity = 16;
     Node[] buckets;
-
     public MyHashMap() {
         buckets = new Node[capacity];
         for (int x = 0; x < capacity; x++) {
@@ -56,7 +48,7 @@ public class MyHashMap <K,V> implements IHashMap {
         }
     }
 
-    public boolean isEmpty() {
+     public boolean isEmpty() {
         for (int x = 0; x < buckets.length; x++) {
             if (buckets[x] == null) {
             } else {
@@ -64,7 +56,7 @@ public class MyHashMap <K,V> implements IHashMap {
             }
         }
         return true;
-    }
+     }
 
     public boolean containsKey(Object key) {
         Node current = buckets[calculateIndex(key)];
