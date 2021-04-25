@@ -1,30 +1,27 @@
 package Collection;
 
+import java.util.Arrays;
+import java.util.Iterator;
 public class MyLinkedList<T> implements MyList <T> {
+    private class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> previous;
 
-    private static class Node<T> {
-        T item;
-        Node<T> next;
-        Node<T> previous;
-
-        public Node(T item) {
-            this.item = null;
-            this.next = null;
-            this.previous = null;
+        public Node(E item) {
+            this.item = item;
         }
     }
+        private Node<T> first;
+        private Node<T> last;
+        private int size;
 
-    private Node<T> first;
-    private Node<T> last;
-    private int size;
-
-    public void MyLinkedList() {
-        size = 0;
-    }
-
-    @Override
-    public void add(Object value) {
-        Node newNode = new Node(value);
+        public void MyLinkedList() {
+            size = 0;
+        }
+        @Override
+    public void add(T element) {
+        Node newNode = new Node(element);
         if (first == null) first = newNode;
         else {
             last.next = newNode;
@@ -32,7 +29,7 @@ public class MyLinkedList<T> implements MyList <T> {
         }
         last = newNode;
         size++;
-    }
+            }
 
     @Override
     public void remove(int index) {
@@ -74,7 +71,33 @@ public class MyLinkedList<T> implements MyList <T> {
         }
         return result;
     }
- 
+  public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> node = first;
+            @Override
+            public boolean hasNext() {
+                return node!=null;
+            }
+            @Override
+            public T next() {
+                T item = node.item;
+                node = node.next;
+                return item;
+            }
+        };
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Iterator<T> iterator = this.iterator();
+        while(iterator.hasNext()){
+            sb.append(iterator.next());
+            if (iterator.hasNext()) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
 
+    }
 }
+
 
