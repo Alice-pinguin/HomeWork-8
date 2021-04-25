@@ -3,7 +3,7 @@ package Collection;
 import java.util.Arrays;
 
 public class MyArrayList<T> implements MyList{
-    private int size = 16;
+    private int size = 10;
     private  int rate = 4;
     private Object[] array = new Object[size];
     private int pointer = 0;
