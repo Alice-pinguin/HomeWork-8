@@ -37,7 +37,9 @@ public class MyHashMap <K,V> implements IHashMap {
         public void setValue (Object value) {
             this.value = value;
         }
+
     }
+
     private static int capacity = 16;
     Node[] buckets;
     public MyHashMap() {
@@ -47,8 +49,7 @@ public class MyHashMap <K,V> implements IHashMap {
             buckets[x] = node;
         }
     }
-
-     public boolean isEmpty() {
+    public boolean isEmpty() {
         for (int x = 0; x < buckets.length; x++) {
             if (buckets[x] == null) {
             } else {
@@ -56,7 +57,7 @@ public class MyHashMap <K,V> implements IHashMap {
             }
         }
         return true;
-     }
+    }
 
     public boolean containsKey(Object key) {
         Node current = buckets[calculateIndex(key)];
@@ -96,13 +97,13 @@ public class MyHashMap <K,V> implements IHashMap {
     public Object remove(Object key, Object value) {
         Node current = buckets[calculateIndex(key)];
         Object temp = null;
-        if (current.getData() == value && current.getKey() == key) {
-            temp = current.getData();
+        if (current.getValue() == value && current.getKey() == key) {
+            temp = current.getValue();
             buckets[calculateIndex(key)] = current.getNext();
         }
         while (current.getNext() != null) {
-            if (current.getNext().getData() == value) {
-                temp = current.getNext().getData();
+            if (current.getNext().getValue() == value) {
+                temp = current.getNext().getValue();
                 if (current.getNext().getNext() == null) {
                     current.clearNext();
                 } else {
@@ -119,10 +120,10 @@ public class MyHashMap <K,V> implements IHashMap {
     public Object get(Object key) {
         Node current = buckets[calculateIndex(key)];
         if (current.getKey() == key)
-            return current.getData();
+            return current.getValue();
         while (current.getNext() != null) {
             if (current.getKey() == key) {
-                return current.getData();
+                return current.getValue();
             }
         }
         return null;
@@ -134,7 +135,7 @@ public class MyHashMap <K,V> implements IHashMap {
         for (int x = 0; x < buckets.length; x++) {//fix loop(null point)
             Node current = buckets[x];//must return in int
 
-            if (current.getData() != null)
+            if (current.getValue() != null)
                 count++;
             while (current.getNext() != null) {
                 count++;
@@ -150,7 +151,6 @@ public class MyHashMap <K,V> implements IHashMap {
             buckets[i] = null;
         }
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
