@@ -1,4 +1,5 @@
 package Collection;
+
 import java.util.Arrays;
 
 public class MyQueue <T> implements IQueue<T>{
@@ -9,7 +10,6 @@ public class MyQueue <T> implements IQueue<T>{
         queueArray = new Object[capacity];
         size=0;
     }
-
     @Override
     public void add(T value) {
         if (value == null) {
@@ -35,7 +35,7 @@ public class MyQueue <T> implements IQueue<T>{
     @Override
     public void clear() {
         for (int i = 0; i < size; i++)
-            queueArray[i] = null;
+         queueArray[i] = null;
         size = 0;
     }
 
@@ -50,7 +50,7 @@ public class MyQueue <T> implements IQueue<T>{
     }
 
     @Override
-    public T pop() {
+    public T poll() {
         return remove(0);
     }
 
@@ -58,4 +58,6 @@ public class MyQueue <T> implements IQueue<T>{
     public String toString() {
         return "queueArray=" + Arrays.toString(queueArray);
     }
+}
+
 }
