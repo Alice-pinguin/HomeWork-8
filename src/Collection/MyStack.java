@@ -1,67 +1,64 @@
 package Collection;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
+import java.util.EmptyStackException;
 
-public class MyStack <T> implements IStack {
+public class MyStack <T> implements IStack<T> {
+    private Object[] stackArray;
     private int size;
-    private int[] stackArray;
-    private int top;
 
-    public MyStack(int max) {
-        this.size = max;
-        stackArray = new int[size];
-        top = -1;
+    public MyStack(int capacity) {
+        this.stackArray = new Object[capacity];
+        this.size = 0;
     }
-
-    public boolean isFull() {
-        return (top == size - 1);
+      private boolean isEmpty(){
+        return size==0;
     }
-
-    public boolean isEmpty() {
-        return (top == -1);
-    }
-
     @Override
-    public void push(int value) {
-        if (isFull()) {
-            throw new NoSuchElementException("Stack is Full");
-        }
-        stackArray[++top] = value;
-        size++;
+    public void push(T value) {
+           if (size == stackArray.length-1) {
+            Object[] newArray = new Object[stackArray.length * 2];
+            System.arraycopy(stackArray,0,newArray,0,stackArray.length);
+            stackArray=newArray;
     }
-
+            stackArray[size++] = value;
+    }
     @Override
-    public int remove(int index) {
+    public void  remove(int index) {
         if (isEmpty()) {
-            throw new NoSuchElementException("Stack is empty");
+            throw new EmptyStackException();
         }
-        return stackArray[top--];
-
+        stackArray[index]=null;
+        Object[] newArray = new Object[stackArray.length-1];
+    System.arraycopy(stackArray,0,newArray,0,stackArray.length-1);
     }
 
     @Override
     public void clear() {
-        for (int i = 0; i < size; i++)
-            stackArray[i] = 0;
-        size = 0;
-    }
-
+            for (int i = 0; i < stackArray.length; i++)
+                stackArray[i] = null;
+                size = 0;
+            }
     @Override
     public int size() {
         return size;
     }
 
     @Override
-    public Object peek() {
-        return stackArray[top];
+    public T peek() {
+        if (isEmpty()) {
+            throw  new EmptyStackException();
+        }
+        return (T) stackArray[0];
     }
 
     @Override
-    public Object pop() {
-        return remove(top);
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return (T) (stackArray[0]=null);
     }
-
     @Override
     public String toString() {
         return "MyStack" + Arrays.toString(stackArray);
