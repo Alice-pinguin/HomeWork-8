@@ -10,38 +10,53 @@ public class Main {
         favoriteCity.add("Paris");
         System.out.println(favoriteCity);
 
-        MyLinkedList<Integer> linkedList = new MyLinkedList<>();
+
 //Test LinkedList
-        linkedList.add(40);
-        linkedList.add(10);
-        linkedList.add(20);
-        System.out.println((linkedList));
+        MyLinkedList <Integer> linkedList = new <Integer> MyLinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        System.out.println(linkedList);
+        linkedList.clear();
+        System.out.println(linkedList);
 //Test Queue
         MyQueue<String> vine = new MyQueue<>();
         vine.add("Merlo");
-        vine.add("Alazan Valley");
         vine.add("Mademoiselle comedie rose");
-         System.out.println(vine);
+        vine.add("Shardone");
+        vine.add("Pino Nuar");
+        System.out.println(vine);
+        System.out.println(vine.size());
 
- //Test Stack
-    MyStack <Integer> stack = new  MyStack <>(10);
+        vine.remove(2);
+        System.out.println(vine);
+        vine.poll();
+        System.out.println(vine);
 
-        stack.push(101);
-        stack.push(123);
-        stack.push(341);
-        stack.push(111);
-        System.out.println(stack);
+ // Test Stack
+    MyStack<String> names = new MyStack<>(10);
+    names.push("Andrey");
+    names.push("Oleg");
+    names.push("Lina");
+    names.push("Arina");
+    System.out.println(names);
+    names.remove(1);
+    System.out.println(names);
+
+  //  System.out.println(names);
+    names.clear();
+    System.out.println(names);
+
 //Test HashMap
         MyHashMap <Integer, String> fruits = new MyHashMap<>();
         fruits.put(123, "Banana");
-        fruits.put(234, "Orange");
         fruits.put(23, "Grape");
         System.out.println("Val at 123 "+fruits.get(123));
-        System.out.println("Val at 234 "+fruits.get(234));
         System.out.println("Val at 23 "+fruits.get(23));
         System.out.println("Val at 2 "+fruits.get(2));
 
 }
 }
+
+
 
 
