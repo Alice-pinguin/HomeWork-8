@@ -51,7 +51,10 @@ public class MyQueue <T> implements IQueue<T>{
 
     @Override
     public T poll() {
-        return remove(0);
+        T first = (T)queueArray[0];
+        queueArray = Arrays.copyOfRange(queueArray, 1, queueArray.length);
+        size--;
+        return first;
     }
 
     @Override
